@@ -13,7 +13,7 @@ import java.nio.charset.Charset
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-
+//https://medium.com/swlh/dependency-injection-with-koin-6b6364dc8dba
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)

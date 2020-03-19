@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         userViewModel.data.observe(this, Observer {
+            // Populate the UI
             // Todo: Populate the recyclerView here
             it.forEach { githubUser ->
                 Toast.makeText(baseContext, githubUser.login, Toast.LENGTH_SHORT).show()
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         userViewModel.loadingState.observe(this, Observer {
             when (it.status) {
+                // Observe the loading state
                 LoadingState.Status.FAILED -> Toast.makeText(baseContext, it.msg, Toast.LENGTH_SHORT).show()
                 LoadingState.Status.RUNNING -> Toast.makeText(baseContext, "Loading", Toast.LENGTH_SHORT).show()
                 LoadingState.Status.SUCCESS -> Toast.makeText(baseContext, "Success", Toast.LENGTH_SHORT).show()
