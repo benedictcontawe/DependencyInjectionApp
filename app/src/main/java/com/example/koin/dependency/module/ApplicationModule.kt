@@ -1,6 +1,7 @@
 package com.example.koin.dependency.module
 
 import android.app.Application
+import com.example.koin.MainAndroidViewModel
 import com.example.koin.MainViewModel
 import com.example.koin.model.repository.BaseRepository
 import com.example.koin.model.repository.CustomRepository
@@ -20,13 +21,18 @@ object ApplicationModule {
             provideCustomRepository()
         }
 
-        // Simple Presenter Factory
         viewModel {
             provideMainViewModel(get<BaseRepository>())
+        }
+
+        viewModel {
+            provideMainAndroidViewModel(get<Application>(),get<BaseRepository>())
         }
     }
 
     fun provideCustomRepository() : CustomRepository = CustomRepository()
 
     fun provideMainViewModel(baseRepository : BaseRepository) : MainViewModel = MainViewModel(baseRepository)
+
+    fun provideMainAndroidViewModel(application: Application,baseRepository : BaseRepository) : MainAndroidViewModel = MainAndroidViewModel(application,baseRepository)
 }
