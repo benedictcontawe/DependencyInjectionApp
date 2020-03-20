@@ -12,16 +12,22 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     // Lazy injected MainViewModel
-    //val mainViewModel : MainViewModel by viewModel<MainViewModel>()
+    val mainViewModel : MainViewModel by viewModel<MainViewModel>()
     val mainAndroidViewModel : MainAndroidViewModel by viewModel<MainAndroidViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mainViewModel.sayHello().observe(this, object : Observer<String> {
+            override fun onChanged(data : String?) {
+                text_view_result_view_model.setText("${data}")
+            }
+        })
+
         mainAndroidViewModel.sayHello().observe(this, object : Observer<String> {
             override fun onChanged(data : String?) {
-                text_view_result.setText("${data}")
+                text_view_result_android_view_model.setText("${data}")
             }
         })
     }
