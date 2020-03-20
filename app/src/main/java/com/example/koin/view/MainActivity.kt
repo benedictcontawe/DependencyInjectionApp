@@ -1,34 +1,26 @@
 package com.example.koin.view
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.koin.MainViewModel
 import com.example.koin.R
-import com.example.koin.presenter.CustomPresenter
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.get
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    // Lazy injected CustomPresenter
-    val customPresenter : CustomPresenter by inject()
+    // Lazy injected MainViewModel
+    val mainViewModel : MainViewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        try {
-            //Toast.makeText(this,customPresenter.sayHello(),Toast.LENGTH_SHORT).show()
-            text_view_result.setText("${customPresenter.sayHello()}")
-            Log.d("MainActivity",customPresenter.sayHello().toString())
-        } catch (ex : Exception) {
-            text_view_result.setText("Error! ${ex.message}")
-            Log.e("MainActivity",ex.toString())
-        }
+        mainViewModel.sayHello().observe(this, object : Observer<String> {
+            override fun onChanged(data : String?) {
+                text_view_result.setText("${data}")
+            }
+        })
     }
 }

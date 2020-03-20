@@ -1,13 +1,16 @@
 package com.example.koin.dependency.module
 
+import android.app.Application
+import com.example.koin.MainViewModel
 import com.example.koin.model.repository.BaseRepository
 import com.example.koin.model.repository.CustomRepository
 import com.example.koin.presenter.CustomPresenter
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 /**
- * For Database (Realm, Room, SQLite)
+ * For Application (View Model, Presenter, App)
  * */
 object ApplicationModule {
 
@@ -18,12 +21,12 @@ object ApplicationModule {
         }
 
         // Simple Presenter Factory
-        factory {
-            provideCustomPresenter(get())
+        viewModel {
+            provideMainViewModel(get<BaseRepository>())
         }
     }
 
     fun provideCustomRepository() : CustomRepository = CustomRepository()
 
-    fun provideCustomPresenter(baseRepository :  BaseRepository) : CustomPresenter = CustomPresenter(baseRepository)
+    fun provideMainViewModel(baseRepository : BaseRepository) : MainViewModel = MainViewModel(baseRepository)
 }
