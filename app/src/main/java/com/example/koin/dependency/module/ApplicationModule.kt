@@ -6,22 +6,24 @@ import com.example.koin.presenter.CustomPresenter
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
+/**
+ * For Database (Realm, Room, SQLite)
+ * */
 object ApplicationModule {
 
     val applicationModule : Module = module {
 
         single<BaseRepository> {
-            CustomRepository()
+            provideCustomRepository()
         }
 
         // Simple Presenter Factory
         factory {
-            CustomPresenter(get())
-            //provideCustomPresenter()
+            provideCustomPresenter(get())
         }
     }
 
-    //fun provideCustomRepository() : CustomRepository = CustomRepository()
+    fun provideCustomRepository() : CustomRepository = CustomRepository()
 
-    //fun provideCustomPresenter() : CustomPresenter = CustomPresenter()
+    fun provideCustomPresenter(baseRepository :  BaseRepository) : CustomPresenter = CustomPresenter(baseRepository)
 }

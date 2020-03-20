@@ -3,6 +3,9 @@ package com.example.koin.dependency.module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
+/**
+ * For API (Retrofit)
+ * */
 object APIModule {
 
     val apiModule = module {
