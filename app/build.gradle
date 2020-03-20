@@ -13,7 +13,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,6 +33,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     //Android UI Layout Library
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -41,12 +43,20 @@ dependencies {
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
 
     //Koin
-    implementation 'org.koin:koin-core:2.0.1'
-    implementation 'org.koin:koin-android:2.0.1'
+    implementation "org.koin:koin-core:2.1.4"
+    implementation "org.koin:koin-android:2.1.4"
     //implementation 'org.koin:koin-android-architecture:2.0.1'
-    implementation 'org.koin:koin-androidx-scope:2.0.1'
-    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
-    implementation 'org.koin:koin-test:2.0.1'
+    implementation "org.koin:koin-androidx-scope:2.1.4"
+    implementation "org.koin:koin-androidx-viewmodel:2.1.4"
+    implementation "org.koin:koin-androidx-fragment:2.1.4"
+    implementation "org.koin:koin-test:2.1.4"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.6.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.0"
+
+    //Multidex
+    implementation "androidx.multidex:multidex:2.0.1"
 
     //Kotlin Library
     implementation "androidx.core:core-ktx:1.2.0"
@@ -58,6 +68,4 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
 }

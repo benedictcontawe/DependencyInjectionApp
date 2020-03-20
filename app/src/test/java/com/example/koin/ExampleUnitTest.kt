@@ -1,6 +1,5 @@
 package com.example.koin
 
-import com.google.gson.Gson
 import org.junit.Test
 
 import org.junit.Assert.*
