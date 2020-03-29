@@ -9,13 +9,38 @@ import retrofit2.Retrofit
 object APIModule {
 
     val apiModule = module {
-
-        //fun provideApi(retrofit: Retrofit) = retrofit.create(GithubRepoApi::class.java)
-
         /*
         single {
-            provideApi(get())
+            provideRetrofit()
+        }
+
+        single {
+            provideOkHttpClient(get<OkHttpClient>())
+
+        factory<CountryAPI> {
+            provideCountryApi(get<Retrofit>())
         }
         */
     }
+    /*
+    private fun provideRetrofit() : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.API_DOMAIN)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    private fun provideOkHttpClient(okHttpClient : OkHttpClient) : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.API_DOMAIN)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+    }
+
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor) : OkHttpClient {
+        return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
+    }
+
+    private fun provideCountryApi(retrofit : Retrofit) : CountryAPI = retrofit.create(CountryAPI::class.java)
+    */
 }
