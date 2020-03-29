@@ -19,12 +19,4 @@ class MainAndroidViewModel : AndroidViewModel {
         this.baseRepository = baseRepository
     }
 
-    fun sayHello() : LiveData<String> {
-        try {
-            liveHello.setValue("${baseRepository.giveHello()} from $this")
-        } catch (ex : Exception) {
-            liveHello.setValue("Error! ${ex.message}")
-        }
-        return liveHello
-    }
 }
