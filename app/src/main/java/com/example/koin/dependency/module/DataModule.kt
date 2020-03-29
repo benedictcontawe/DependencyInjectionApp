@@ -1,5 +1,8 @@
 package com.example.koin.dependency.module
 
+import android.content.Context
+import com.example.koin.model.room.CustomDAO
+import com.example.koin.model.room.CustomDatabase
 import org.koin.dsl.module
 
 /**
@@ -9,12 +12,16 @@ object DataModule {
 
     val dataModule = module {
 
-        //fun provideApi(retrofit: Retrofit) = retrofit.create(GithubRepoApi::class.java)
-
-        /*
-        single {
-            provideApi(get())
+        single<CustomDatabase> {
+            provideCustomDatabase(get<Context>())
         }
-        */
+
+        factory<CustomDAO> {
+            provideCustomDao(get<Context>())
+        }
     }
+
+    private fun provideCustomDatabase(context: Context) : CustomDatabase = CustomDatabase.getInstance(context)!!
+
+    private fun provideCustomDao(context: Context) : CustomDAO = CustomDatabase.getInstance(context)!!.customDao()
 }
