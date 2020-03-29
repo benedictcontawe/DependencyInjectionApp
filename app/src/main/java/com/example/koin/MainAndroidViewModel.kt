@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.koin.model.repository.BaseRepository
+import com.example.koin.model.web.CountryResponseModel
 
 class MainAndroidViewModel : AndroidViewModel {
 
@@ -19,12 +20,7 @@ class MainAndroidViewModel : AndroidViewModel {
         this.baseRepository = baseRepository
     }
 
-    fun sayHello() : LiveData<String> {
-        try {
-            liveHello.setValue("${baseRepository.giveHello()} from $this")
-        } catch (ex : Exception) {
-            liveHello.setValue("Error! ${ex.message}")
-        }
-        return liveHello
+    fun requestCountry() : LiveData<List<CountryResponseModel>> {
+        return baseRepository.requestCountryDetails()
     }
 }
