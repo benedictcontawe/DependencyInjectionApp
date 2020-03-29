@@ -8,13 +8,20 @@ import org.koin.dsl.module
 object DataModule {
 
     val dataModule = module {
-
-        //fun provideApi(retrofit: Retrofit) = retrofit.create(GithubRepoApi::class.java)
-
         /*
-        single {
-            provideApi(get())
+        val dataModule = module {
+
+        single<CustomDatabase> {
+            provideCustomDatabase(get<Context>())
+        }
+
+        factory<CustomDAO> {
+            provideCustomDao(get<Context>())
         }
         */
     }
+
+    //private fun provideCustomDatabase(context: Context) : CustomDatabase = CustomDatabase.getInstance(context)!!
+
+    //private fun provideCustomDao(context: Context) : CustomDAO = CustomDatabase.getInstance(context)!!.customDao()
 }
