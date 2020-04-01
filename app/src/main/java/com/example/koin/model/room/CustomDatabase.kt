@@ -1,11 +1,11 @@
 package com.example.koin.model.room
 
-import android.content.Context
 import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.koin.AppDelegate
 
 @Database(
         entities = [CustomEntity::class],
@@ -18,11 +18,11 @@ abstract class CustomDatabase : RoomDatabase() {
     companion object {
         @Volatile private var instance : CustomDatabase? = null
 
-        fun getInstance(context: Context): CustomDatabase? {
+        fun getInstance(): CustomDatabase? {
             if (instance == null) {
                 synchronized(CustomDatabase::class) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext,
+                        AppDelegate.applicationContext(),
                         CustomDatabase::class.java, "custom_database"
                     )
                         .fallbackToDestructiveMigration()

@@ -13,6 +13,18 @@ import org.koin.core.context.startKoin
 
 class AppDelegate : MultiDexApplication() {
 
+    companion object {
+        var instance: AppDelegate? = null
+
+        fun applicationContext(): Context {
+            return instance!!.applicationContext
+        }
+    }
+
+    init {
+        instance = this
+    }
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
 
@@ -22,6 +34,7 @@ class AppDelegate : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+
 
         // Start Koin
         startKoin{

@@ -13,15 +13,15 @@ object DataModule {
     val dataModule = module {
 
         single<CustomDatabase> {
-            provideCustomDatabase(get<Context>())
+            provideCustomDatabase()
         }
 
         factory<CustomDAO> {
-            provideCustomDao(get<Context>())
+            provideCustomDao()
         }
     }
 
-    private fun provideCustomDatabase(context: Context) : CustomDatabase = CustomDatabase.getInstance(context)!!
+    private fun provideCustomDatabase() : CustomDatabase = CustomDatabase.getInstance()!!
 
-    private fun provideCustomDao(context: Context) : CustomDAO = CustomDatabase.getInstance(context)!!.customDao()
+    private fun provideCustomDao() : CustomDAO = CustomDatabase.getInstance()!!.customDao()
 }
