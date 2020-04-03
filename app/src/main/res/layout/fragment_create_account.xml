@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:isScrollContainer="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+        <RelativeLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/addYourDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="Create Your Profile"
+                    android:textColor="#373737"
+                    android:textSize="23sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/addYourDetailsBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addYourDetails"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center"
+                    android:text="Add your name and photo so others\ncan see who you are."
+                    android:textColor="#373737"
+                    android:textSize="18sp" />
+
+            <RelativeLayout
+                    android:id="@+id/details"
+                    android:paddingEnd="38dp"
+                    android:paddingStart="38dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addYourDetailsBody"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                <RelativeLayout
+                        android:id="@+id/ivProfileSignupWrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                            android:id="@+id/ivProfileSignup"-->
+<!--                            android:layout_width="96dp"-->
+<!--                            android:layout_height="96dp"-->
+<!--                            android:autofillHints="Add Photo"-->
+<!--                            android:src="@color/white"-->
+<!--                            app:civ_border_color="#2e3073"-->
+<!--                            app:civ_border_width="2dp" />-->
+
+                    <TextView
+                            android:id="@+id/tvAddPhoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                           android:layout_centerInParent="true"
+                            android:layout_marginTop="30dp"
+                            android:text="Add\nPhoto"
+                            android:textAlignment="center"
+                            android:textColor="#808080"
+                            android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/ivProfileSignupWrapper">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edittext_first_name"
+                            android:layout_width="238dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:backgroundTint="#2e3073"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                            android:hint="Enter first name..."
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapWords|textPersonName|textNoSuggestions"
+                            android:isScrollContainer="true"
+                            android:longClickable="false"
+                            android:maxLength="20"
+                            android:singleLine="true"
+                            android:textColor="#373737"
+                            android:textSelectHandle="@drawable/shape_handle"
+                            android:textSize="15sp" />
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edittext_last_name"
+                            android:layout_width="236dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittext_first_name"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="#2e3073"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                            android:hint="Enter last name..."
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapWords|textPersonName|textNoSuggestions"
+                            android:isScrollContainer="true"
+                            android:longClickable="false"
+                            android:maxLength="20"
+                            android:textColor="#373737"
+                            android:textSelectHandle="@drawable/shape_handle"
+                            android:textSize="15sp" />
+
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_edt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivProfileSignupWrapper"
+                        android:text="Edit"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="35dp"
+                        android:textColor="#808080"
+                        android:visibility="gone"
+                        android:textSize="15sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

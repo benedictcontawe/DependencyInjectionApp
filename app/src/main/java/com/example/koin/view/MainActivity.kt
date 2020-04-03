@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.example.koin.LoadingState
 import com.example.koin.R
 import com.example.koin.UserViewModel
+import com.example.koin.view.fragment.EnterMandatoryFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -35,5 +36,19 @@ class MainActivity : AppCompatActivity() {
                 LoadingState.Status.SUCCESS -> Toast.makeText(baseContext, "Success", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun callCreateAccountFragment() {
+        /*
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, EnterMandatoryFragment.newInstance())
+            .commitNow()
+        */
+        val fragmentManager = supportFragmentManager
+        fragmentManager.apply {
+            val transaction = this.beginTransaction()
+            transaction.replace(R.id.container, EnterMandatoryFragment.newInstance())
+            transaction.commit()
+        }
     }
 }
