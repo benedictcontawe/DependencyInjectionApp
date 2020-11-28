@@ -18,7 +18,7 @@ abstract class CustomDatabase : RoomDatabase() {
     companion object {
         @Volatile private var instance : CustomDatabase? = null
 
-        fun getInstance(): CustomDatabase? {
+        fun getInstance() : CustomDatabase? {
             if (instance == null) {
                 synchronized(CustomDatabase::class) {
                     instance = Room.databaseBuilder(

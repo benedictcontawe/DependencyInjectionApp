@@ -6,18 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.example.koin.model.CustomModel
 import com.example.koin.model.repository.BaseRepository
 import com.example.koin.util.ConvertList
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MainViewModel : ViewModel {
+class MainViewModel : ViewModel(), KoinComponent {
 
-    private val customRepository : BaseRepository
-    private lateinit var liveList : LiveData<MutableList<CustomModel>>
-    private lateinit var liveUpdate : MutableLiveData<CustomModel>
-
-    constructor(baseRepository : BaseRepository) {
-        this.customRepository = baseRepository
-        liveList = MutableLiveData()
-        liveUpdate = MutableLiveData()
-    }
+    private val customRepository : BaseRepository by inject()
+    private val liveUpdate : MutableLiveData<CustomModel> by lazy(LazyThreadSafetyMode.NONE, initializer = { MutableLiveData<CustomModel>() })
 
     fun setUpdate(item : CustomModel) {
         liveUpdate.value = item
@@ -52,9 +47,8 @@ class MainViewModel : ViewModel {
     }
 
     fun getItems() : LiveData<MutableList<CustomModel>> {
-        liveList = ConvertList.toLiveDataListModel(
+        return ConvertList.toLiveDataListModel(
             customRepository.getAll()
         )
-        return liveList
     }
 }

@@ -1,6 +1,5 @@
 package com.example.koin.dependency.module
 
-import android.content.Context
 import com.example.koin.model.room.CustomDAO
 import com.example.koin.model.room.CustomDatabase
 import org.koin.dsl.module
