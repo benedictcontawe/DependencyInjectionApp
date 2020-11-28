@@ -5,14 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.koin.model.repository.BaseRepository
 import com.example.koin.model.web.CountryResponseModel
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MainViewModel : ViewModel {
+class MainViewModel : ViewModel(), KoinComponent {
 
-    private lateinit var baseRepository : BaseRepository
-
-    constructor(baseRepository : BaseRepository) {
-        this.baseRepository = baseRepository
-    }
+    private val baseRepository : BaseRepository by inject()
 
     fun requestCountry() : LiveData<List<CountryResponseModel>> {
         return baseRepository.requestCountryDetails()

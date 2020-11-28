@@ -6,18 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.koin.model.repository.BaseRepository
 import com.example.koin.model.web.CountryResponseModel
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MainAndroidViewModel : AndroidViewModel {
+class MainAndroidViewModel : AndroidViewModel, KoinComponent {
 
-    private lateinit var baseRepository : BaseRepository
-    private val liveHello : MutableLiveData<String> = MutableLiveData()
+    private val baseRepository : BaseRepository by inject()
+    private val liveHello : MutableLiveData<String> by lazy(LazyThreadSafetyMode.NONE, initializer = { MutableLiveData<String>() })
 
     constructor(application: Application) : super(application) {
 
-    }
-
-    constructor(application: Application,baseRepository : BaseRepository) : super(application) {
-        this.baseRepository = baseRepository
     }
 
     fun requestCountry() : LiveData<List<CountryResponseModel>> {
