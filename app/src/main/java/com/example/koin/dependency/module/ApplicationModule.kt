@@ -32,7 +32,7 @@ object ApplicationModule {
 
     fun provideCustomRepository() : CustomRepository = CustomRepository()
 
-    fun provideMainViewModel(baseRepository : BaseRepository) : MainViewModel = MainViewModel(baseRepository)
+    fun provideMainViewModel(baseRepository : BaseRepository) : MainViewModel = MainViewModel()
 
-    fun provideMainAndroidViewModel(application: Application,baseRepository : BaseRepository) : MainAndroidViewModel = MainAndroidViewModel(application,baseRepository)
+    fun provideMainAndroidViewModel(application: Application,baseRepository : BaseRepository) : MainAndroidViewModel = MainAndroidViewModel(application)
 }
