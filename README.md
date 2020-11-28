@@ -13,6 +13,7 @@ A few resources to get you started if this is your Dependency Injection project:
 - [Koin - Simple Android DI](https://android.jlelse.eu/koin-simple-android-di-a47827a707ce)
 - [Arnaud Giuliani - Simplify your Android development with Koin](https://www.youtube.com/watch?v=KzQbJFVjr9w)
 - [Unlock your Android ViewModel power with Koin](https://android.jlelse.eu/unlock-your-android-viewmodel-power-with-koin-23eda8f493be)
+- [After updating Koin 2.1.6 version I Got crash like. java.lang.NoSuchMethodError:](https://github.com/InsertKoinIO/koin/issues/871)
 
 ## Reference
 
