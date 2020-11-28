@@ -14,7 +14,7 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     fun sayHello() : LiveData<String> {
         try {
-            liveHello.setValue("${baseRepository.giveHello()} \n from MainViewModel Instance \n $this \n and CustomRepository Instance\n ${baseRepository.giveRepository()}")
+            liveHello.setValue("${baseRepository.giveHello()} \n from \n MainViewModel Instance \n $this \n and \n CustomRepository Instance \n ${baseRepository.giveRepository()}")
         } catch (ex : Exception) {
             liveHello.setValue("Error! ${ex.message}")
         }
