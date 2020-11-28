@@ -28,13 +28,14 @@ class AppDelegate : MultiDexApplication() {
             androidLogger()  // use AndroidLogger as Koin Logger - default Level.INFO
             androidContext(this@AppDelegate) // use the Android context given there
             androidFileProperties() // load properties from assets/koin.properties file
-            modules(
+            koin.loadModules(// module list
                 listOf(
                     ApplicationModule.applicationModule,
                     APIModule.apiModule,
                     DataModule.dataModule
                 )
-            ) // module list
+            )
+            //koin.createRootScope()
         }
     }
 

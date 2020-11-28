@@ -12,8 +12,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     // Lazy injected MainViewModel
-    val mainViewModel : MainViewModel by viewModel<MainViewModel>()
-    val mainAndroidViewModel : MainAndroidViewModel by viewModel<MainAndroidViewModel>()
+    private val mainViewModel : MainViewModel by viewModel<MainViewModel>()
+    private val mainAndroidViewModel : MainAndroidViewModel by viewModel<MainAndroidViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
