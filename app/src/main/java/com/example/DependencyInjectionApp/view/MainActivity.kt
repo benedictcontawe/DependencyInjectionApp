@@ -1,8 +1,8 @@
-package com.example.koin.view
+package com.example.DependencyInjectionApp.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.koin.R
+import com.example.DependencyInjectionApp.R
 
 class MainActivity : AppCompatActivity() {
 

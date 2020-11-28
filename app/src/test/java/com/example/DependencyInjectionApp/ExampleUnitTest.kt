@@ -1,11 +1,8 @@
-package com.example.koin
+package com.example.DependencyInjectionApp
 
-import com.google.gson.Gson
 import org.junit.Test
 
 import org.junit.Assert.*
-import java.io.InputStream
-import java.nio.charset.Charset
 
 /**
  * Example local unit test, which will execute on the development machine (host).
