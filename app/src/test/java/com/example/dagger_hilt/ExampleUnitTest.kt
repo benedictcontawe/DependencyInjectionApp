@@ -1,4 +1,4 @@
-package com.example.DependencyInjectionApp
+package com.example.dagger_hilt
 
 import org.junit.Test
 
