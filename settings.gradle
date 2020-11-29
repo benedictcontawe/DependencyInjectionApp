@@ -1,2 +1,2 @@
-rootProject.name='Koin'
+rootProject.name='DependencyInjectionApp'
 include ':app'
