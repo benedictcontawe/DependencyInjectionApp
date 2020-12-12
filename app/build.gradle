@@ -30,6 +30,12 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+        // for view binding:
+        // viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -63,18 +69,28 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //Android UI Layout Library
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.3.0-alpha04'
     //Life Cycle Components
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion" //When using Kotlin.
     //annotationProcessor  "androidx.hilt:hilt-compiler:$hiltAndroidXVersion" //When using Java.
+    //Preferences Data Store
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha05"
+    implementation  "androidx.datastore:datastore-core:1.0.0-alpha05"
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
     //Kotlin Library
     implementation "androidx.core:core-ktx:1.3.2"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"

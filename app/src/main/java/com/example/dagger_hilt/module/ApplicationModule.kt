@@ -1,5 +1,7 @@
 package com.example.dagger_hilt.module
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.example.dagger_hilt.repository.BaseRepository
 import com.example.dagger_hilt.repository.CustomRepository
 import dagger.Module
@@ -14,8 +16,8 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    public fun provideCustomRepository() : BaseRepository {
-        return CustomRepository()
+    public fun provideCustomRepository(dataStore  : DataStore<Preferences>) : BaseRepository {
+        return CustomRepository(dataStore)
     }
     /*
     @Retention(AnnotationRetention.RUNTIME)
