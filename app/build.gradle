@@ -84,9 +84,10 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion" //When using Kotlin.
     //annotationProcessor  "androidx.hilt:hilt-compiler:$hiltAndroidXVersion" //When using Java.
-    //Preferences Data Store
-    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha05"
-    implementation  "androidx.datastore:datastore-core:1.0.0-alpha05"
+    //Room -> use annotationProcessor for java, kapt for kotlin
+    implementation "androidx.room:room-runtime:2.2.5" //android.arch.persistence.room:runtime
+    kapt "androidx.room:room-compiler:2.2.5" //android.arch.persistence.room:compiler
+    testImplementation "androidx.room:room-testing:2.2.5" //android.arch.persistence.room:testing
     //Kotlin Coroutines
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"

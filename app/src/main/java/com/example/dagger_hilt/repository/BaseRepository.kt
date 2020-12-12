@@ -1,28 +1,20 @@
 package com.example.dagger_hilt.repository
 
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.LiveData
+import com.example.dagger_hilt.room.CustomEntity
 
 interface BaseRepository {
 
     fun giveRepository() : String
 
-    suspend fun update(booleanKey : Boolean)
+    suspend fun  insert(customEntity : CustomEntity)
 
-    suspend fun update(stringKey : String)
+    suspend fun  update(customEntity : CustomEntity)
 
-    suspend fun update(integerKey : Int)
+    suspend fun  delete(customEntity : CustomEntity)
 
-    suspend fun update(doubleKey : Double)
+    suspend fun  deleteAll()
 
-    suspend fun update(longKey : Long)
+    fun  getAll() : LiveData<List<CustomEntity>>
 
-    fun getBoolean() : Flow<Boolean>
-
-    fun getString() : Flow<String>
-
-    fun getInteger() : Flow<Int>
-
-    fun getDouble() : Flow<Double>
-
-    fun getLong() : Flow<Long>
 }

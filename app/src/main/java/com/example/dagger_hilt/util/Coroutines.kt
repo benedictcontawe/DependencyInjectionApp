@@ -28,6 +28,11 @@ object Coroutines {
         CoroutineScope(Dispatchers.Default).launch {
             work()
         }
+
+    fun default(viewModel : ViewModel, work : suspend (() -> Unit)) =
+        viewModel.viewModelScope.launch(Dispatchers.Default) {
+            work()
+        }
     // No need to run on specific context
     fun unconfined(work : suspend (() -> Unit)) =
         CoroutineScope(Dispatchers.Unconfined).launch {

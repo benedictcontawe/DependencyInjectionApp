@@ -1,132 +1,98 @@
 package com.example.dagger_hilt.view
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
 import com.example.dagger_hilt.MainAndroidViewModel
 import com.example.dagger_hilt.MainViewModel
 import com.example.dagger_hilt.R
 import com.example.dagger_hilt.databinding.MainBinder
+import com.example.dagger_hilt.view.fragment.AddFragment
+import com.example.dagger_hilt.view.fragment.MainFragment
+import com.example.dagger_hilt.view.fragment.UpdateFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG : String = MainActivity::class.java.simpleName
-        private lateinit var binding : MainBinder
     }
 
     private val mainViewModel : MainViewModel by viewModels()
-    private val mainAndroidViewModel : MainAndroidViewModel by viewModels() //activityViewModels()
+    private val androidViewModel : MainAndroidViewModel by viewModels()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        binding = DataBindingUtil.setContentView(this@MainActivity,R.layout.activity_main)
+        setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            binding.setViewModel(mainViewModel)
-            binding.setAndroidViewModel(mainAndroidViewModel)
-            binding.setLifecycleOwner(this@MainActivity)
-            observeBoolean()
-            observeString()
-            observeInt()
-            observeDouble()
-            observeLong()
+            callMainFragment()
         }
-        binding.buttonBoolean.setOnClickListener(this@MainActivity)
-        binding.buttonString.setOnClickListener(this@MainActivity)
-        binding.buttonInteger.setOnClickListener(this@MainActivity)
-        binding.buttonDouble.setOnClickListener(this@MainActivity)
-        binding.buttonLong.setOnClickListener(this@MainActivity)
-        Log.d(TAG,"MainViewModel Instance ${binding.getViewModel()?.getInstance()}")
-        Log.d(TAG,"MainAndroidViewModel Instance ${binding.getAndroidViewModel()?.getInstance()}")
-        Log.d(TAG,"MainViewModel Repository Instance ${binding.getViewModel()?.getRepositoryInstance()}")
-        Log.d(TAG,"MainAndroidViewModel Repository Instance ${binding.getAndroidViewModel()?.getRepositoryInstance()}")
+        Log.d(TAG,"MainViewModel Instance ${mainViewModel?.getInstance()}")
+        Log.d(TAG,"MainAndroidViewModel Instance ${androidViewModel?.getInstance()}")
+        Log.d(TAG,"MainViewModel Repository Instance ${mainViewModel?.getRepositoryInstance()}")
+        Log.d(TAG,"MainAndroidViewModel Repository Instance ${androidViewModel?.getRepositoryInstance()}")
     }
 
     //region Observer Methods
-    private fun observeBoolean() {
-        binding.getAndroidViewModel()?.observeBoolean()?.observe(this, object : Observer<Boolean> {
-            override fun onChanged(value : Boolean?) {
-                Log.d(TAG,"observeBoolean() $value")
-                binding.labelBoolean.setText(value.toString())
-            }
-        })
+    private fun callMainFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, MainFragment.newInstance())
+            .commitNow()
     }
 
-    private fun observeString() {
-        binding.getAndroidViewModel()?.observeString()?.observe(this, object : Observer<String> {
-            override fun onChanged(value : String?) {
-                Log.d(TAG,"observeString() $value")
-                binding.labelString.setText(value.toString())
-            }
-        })
+    fun callAddFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, AddFragment.newInstance())
+            .addToBackStack(
+                AddFragment.getTag())
+            .commit()
     }
 
-    private fun observeInt() {
-        binding.getAndroidViewModel()?.observeInt()?.observe(this, object : Observer<Int> {
-            override fun onChanged(value : Int?) {
-                Log.d(TAG,"observeInt() $value")
-                binding.labelInteger.setText(value.toString())
-            }
-        })
+    fun callUpdateFragment() {
+        UpdateFragment
+            .newInstance()
+            .show(
+                supportFragmentManager.beginTransaction(),
+                UpdateFragment.getTag()
+            )
     }
 
-    private fun observeDouble() {
-        binding.getAndroidViewModel()?.observeDouble()?.observe(this, object : Observer<Double> {
-            override fun onChanged(value : Double?) {
-                Log.d(TAG,"observeInt() $value")
-                binding.labelDouble.setText(value.toString())
+    fun showSoftKeyboard(activity : Activity, showKeyboard : Boolean) {
+        var view = activity.currentFocus
+        when(showKeyboard){
+            true -> {
+                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
             }
-        })
-    }
+            false ->{
+                val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                //Find the currently focused view, so we can grab the correct window token from it.
 
-    private fun observeLong() {
-        binding.getAndroidViewModel()?.observeLong()?.observe(this, object : Observer<Long> {
-            override fun onChanged(value : Long?) {
-                Log.d(TAG,"observeInt() $value")
-                binding.labelLong.setText(value.toString())
-            }
-        })
-    }
-    //endregion
-    override fun onClick(view : View) {
-        when(view) {
-            binding.buttonBoolean -> {
-                binding.getAndroidViewModel()?.update(
-                    binding.checkBoxBoolean.isChecked()
-                )
-            }
-            binding.buttonString -> {
-                binding.getAndroidViewModel()?.update(
-                    binding.editTextString.getText().toString()
-                )
-            }
-            binding.buttonInteger -> {
-                binding.getAndroidViewModel()?.update(
-                    binding.editTextInteger.getText().toString().toInt()
-                )
-            }
-            binding.buttonDouble -> {
-                binding.getAndroidViewModel()?.update(
-                    binding.editTextDouble.getText().toString().toDouble()
-                )
-            }
-            binding.buttonLong -> {
-                binding.getAndroidViewModel()?.update(
-                    binding.editTextLong.getText().toString().toLong()
-                )
+                //If no view currently has focus, create a new one, just so we can grab a window token from it
+                if (view == null) {
+                    view = View(activity)
+                }
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
         }
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            super.onBackPressed()
+        }
+        else {
+            supportFragmentManager.popBackStack()
+        }
     }
 }
