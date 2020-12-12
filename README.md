@@ -8,6 +8,7 @@ This project is a starting point for a Dagger 2, Koin Library, Dagger Hilt appli
 
 A few resources to get you started if this is your Dependency Injection project:
 
+- [All about Hilt](https://proandroiddev.com/all-about-hilt-a-dependency-injection-framework-869b9c2bcb09)
 - [Dependency injection with Hilt Kotlin](https://developer.android.com/training/dependency-injection/hilt-android#kotlin)
 - [Hilt and Jetpack integrations](https://developer.android.com/training/dependency-injection/hilt-jetpack)
 - [Dependency injection with Hilt Set Up](https://developer.android.com/training/dependency-injection/hilt-android#setup)
