@@ -1,11 +1,11 @@
-package com.example.koin.model.repository
+package com.example.koin.repository
 
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import com.example.koin.model.room.CustomDAO
-import com.example.koin.model.room.CustomEntity
-import org.koin.core.inject
-import org.koin.core.KoinComponent
+import com.example.koin.room.CustomDAO
+import com.example.koin.room.CustomEntity
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class CustomRepository() : BaseRepository, KoinComponent {
 

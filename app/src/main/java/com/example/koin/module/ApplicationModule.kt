@@ -1,11 +1,10 @@
-package com.example.koin.dependency.module
+package com.example.koin.module
 
 import android.app.Application
 import com.example.koin.MainAndroidViewModel
 import com.example.koin.MainViewModel
-import com.example.koin.model.repository.BaseRepository
-import com.example.koin.model.repository.CustomRepository
-import com.example.koin.presenter.CustomPresenter
+import com.example.koin.repository.BaseRepository
+import com.example.koin.repository.CustomRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -15,7 +14,7 @@ import org.koin.dsl.module
  * */
 object ApplicationModule {
 
-    val applicationModule : Module = module {
+    val module : Module = module {
 
         single<BaseRepository> {
             provideCustomRepository()

@@ -1,11 +1,10 @@
 package com.example.koin
 
 import android.content.Context
-import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
-import com.example.koin.dependency.module.APIModule
-import com.example.koin.dependency.module.ApplicationModule
-import com.example.koin.dependency.module.DataModule
+import com.example.koin.module.APIModule
+import com.example.koin.module.ApplicationModule
+import com.example.koin.module.DataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -25,13 +24,6 @@ class AppDelegate : MultiDexApplication() {
         instance = this
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-
-        //for below SDK 20
-        MultiDex.install(this)
-    }
-
     override fun onCreate() {
         super.onCreate()
 
@@ -41,11 +33,11 @@ class AppDelegate : MultiDexApplication() {
             androidLogger()  // use AndroidLogger as Koin Logger - default Level.INFO
             androidContext(this@AppDelegate) // use the Android context given there
             androidFileProperties() // load properties from assets/koin.properties file
-            modules(
+            this.koin.loadModules(
                 listOf(
-                    ApplicationModule.applicationModule,
-                    APIModule.apiModule,
-                    DataModule.dataModule
+                    ApplicationModule.module,
+                    APIModule.module,
+                    DataModule.module
                 )
             ) // module list
         }

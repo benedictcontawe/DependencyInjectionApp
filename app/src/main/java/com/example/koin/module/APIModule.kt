@@ -1,14 +1,14 @@
-package com.example.koin.dependency.module
+package com.example.koin.module
 
+import org.koin.core.module.Module
 import org.koin.dsl.module
-import retrofit2.Retrofit
 
 /**
  * For API (Retrofit)
  * */
 object APIModule {
 
-    val apiModule = module {
+    val module : Module = module {
         /*
         single {
             provideRetrofit()

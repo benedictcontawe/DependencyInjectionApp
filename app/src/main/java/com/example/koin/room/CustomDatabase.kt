@@ -1,4 +1,4 @@
-package com.example.koin.model.room
+package com.example.koin.room
 
 import android.os.AsyncTask
 import androidx.room.Database

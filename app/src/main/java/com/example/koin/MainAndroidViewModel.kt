@@ -3,9 +3,9 @@ package com.example.koin
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.koin.model.repository.BaseRepository
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import com.example.koin.repository.BaseRepository
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class MainAndroidViewModel : AndroidViewModel, KoinComponent {
 

@@ -1,4 +1,4 @@
-package com.example.koin.model.room
+package com.example.koin.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

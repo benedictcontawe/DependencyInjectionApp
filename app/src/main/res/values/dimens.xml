@@ -18,5 +18,4 @@
 
     <!-- Recycler View Extra Scroll Height -->
     <dimen name="extra_scroll">5dp</dimen>
-
 </resources>

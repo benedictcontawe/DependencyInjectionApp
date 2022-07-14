@@ -9,12 +9,11 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import com.example.koin.databinding.UpdateBinder
 import com.example.koin.MainViewModel
 import com.example.koin.R
-import com.example.koin.databinding.UpdateBinder
 import com.example.koin.model.CustomModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-
 
 class UpdateFragment : BaseDialogFragment() {
 
@@ -34,7 +33,7 @@ class UpdateFragment : BaseDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater,R.layout.update_fragment,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.update_fragment,container,false)
         return binding.root
     }
 

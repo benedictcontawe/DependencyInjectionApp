@@ -2,8 +2,8 @@ package com.example.koin.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.koin.MainViewModel
 import com.example.koin.R
+import com.example.koin.MainViewModel
 import com.example.koin.view.fragment.AddFragment
 import com.example.koin.view.fragment.MainFragment
 import com.example.koin.view.fragment.UpdateFragment

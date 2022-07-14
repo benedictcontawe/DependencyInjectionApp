@@ -2,7 +2,7 @@ package com.example.koin.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.koin.model.room.CustomEntity
+import com.example.koin.room.CustomEntity
 import com.example.koin.model.CustomModel
 
 class ConvertList {

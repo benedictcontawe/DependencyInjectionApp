@@ -1,7 +1,7 @@
-package com.example.koin.model.repository
+package com.example.koin.repository
 
 import androidx.lifecycle.LiveData
-import com.example.koin.model.room.CustomEntity
+import com.example.koin.room.CustomEntity
 
 interface BaseRepository {
 
