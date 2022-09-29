@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface CustomDAO {
+public interface CustomDAO {
 
     //@Insert
     //@Insert(onConflict = OnConflictStrategy.REPLACE)

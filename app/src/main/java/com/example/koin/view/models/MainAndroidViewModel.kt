@@ -1,4 +1,4 @@
-package com.example.koin
+package com.example.koin.view.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -15,5 +15,4 @@ class MainAndroidViewModel : AndroidViewModel, KoinComponent {
     constructor(application: Application) : super(application) {
 
     }
-
 }

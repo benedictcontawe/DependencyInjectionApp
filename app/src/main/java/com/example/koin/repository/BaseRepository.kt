@@ -3,7 +3,9 @@ package com.example.koin.repository
 import androidx.lifecycle.LiveData
 import com.example.koin.room.CustomEntity
 
-interface BaseRepository {
+public interface BaseRepository {
+
+    public fun giveRepository() : String
 
     suspend fun insert(customEntity : CustomEntity)
 
@@ -13,5 +15,5 @@ interface BaseRepository {
 
     suspend fun deleteAll()
 
-    fun getAll() : LiveData<List<CustomEntity>>
+    public fun getAll() : LiveData<List<CustomEntity>>
 }

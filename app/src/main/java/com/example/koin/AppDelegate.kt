@@ -1,6 +1,5 @@
 package com.example.koin
 
-import android.content.Context
 import androidx.multidex.MultiDexApplication
 import com.example.koin.module.APIModule
 import com.example.koin.module.ApplicationModule
@@ -13,15 +12,11 @@ import org.koin.core.context.startKoin
 class AppDelegate : MultiDexApplication() {
 
     companion object {
-        var instance: AppDelegate? = null
-
-        fun applicationContext(): Context {
-            return instance!!.applicationContext
-        }
+        private val TAG : String = AppDelegate::class.java.getSimpleName()
     }
 
     init {
-        instance = this
+
     }
 
     override fun onCreate() {

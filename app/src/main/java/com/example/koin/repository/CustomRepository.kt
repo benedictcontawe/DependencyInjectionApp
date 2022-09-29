@@ -6,10 +6,19 @@ import com.example.koin.room.CustomEntity
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class CustomRepository() : BaseRepository, KoinComponent {
+public class CustomRepository : BaseRepository, KoinComponent {
 
     private val customDao : CustomDAO by inject()
 
+    constructor () {
+
+    }
+
+
+    override fun giveRepository() : String {
+        return this.toString()
+    }
+    //region CRUD Operation
     override suspend fun insert(customEntity : CustomEntity) {
         customDao.insert(
             customEntity
@@ -37,4 +46,5 @@ class CustomRepository() : BaseRepository, KoinComponent {
     override fun getAll() : LiveData<List<CustomEntity>> {
         return customDao.getAll()
     }
+    //endregion
 }

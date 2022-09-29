@@ -1,8 +1,8 @@
 package com.example.koin.module
 
 import android.app.Application
-import com.example.koin.MainAndroidViewModel
-import com.example.koin.MainViewModel
+import com.example.koin.view.models.MainAndroidViewModel
+import com.example.koin.view.models.MainViewModel
 import com.example.koin.presenter.CustomPresenter
 import com.example.koin.repository.BaseRepository
 import com.example.koin.repository.CustomRepository
