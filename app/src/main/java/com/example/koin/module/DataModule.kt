@@ -49,11 +49,11 @@ object DataModule {
         return object : RoomDatabase.Callback() {
             override fun onCreate(db : SupportSQLiteDatabase) { //Initialize Database if no database attached to the App
                 super.onCreate(db)
-                Coroutines.io {
+                /*Coroutines.io {
                     for (index in 0 until 500) {
                         baseRepository.insert(CustomEntity("name $index", R.drawable.ic_launcher_foreground))
                     }
-                }
+                }*/
             }
 
             override fun onOpen(db : SupportSQLiteDatabase) { //Re-open Database if it has database attached to the App
