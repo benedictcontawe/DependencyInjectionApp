@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.dependencyinjectionapp.R
 import com.example.dependencyinjectionapp.databinding.AddBinder
 import com.example.dependencyinjectionapp.model.CustomModel
 import com.example.dependencyinjectionapp.view.models.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 public class AddFragment : BaseFragment, View.OnClickListener {
 
     companion object {
@@ -22,9 +24,10 @@ public class AddFragment : BaseFragment, View.OnClickListener {
     }
 
     private var binder : AddBinder? = null
-    private val viewModel : MainViewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
+    private val viewModel : MainViewModel by viewModels<MainViewModel>()
 
     constructor() {
+
     }
 
     override fun onCreate(savedInstanceState : Bundle?) {

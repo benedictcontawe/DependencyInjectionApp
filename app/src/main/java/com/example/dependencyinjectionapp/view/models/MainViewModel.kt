@@ -87,7 +87,7 @@ public class MainViewModel : ViewModel {
 
     public fun updateItem(updated : String) { Coroutines.io(this@MainViewModel, {
         liveStandBy.postValue(true)
-        val old : CustomModel? = liveUpdate.value
+        val old : CustomModel? = liveUpdate.getValue()
         repository.update(
             ConvertList.toEntity(CustomModel(old?.id, updated, old?.icon))
         )

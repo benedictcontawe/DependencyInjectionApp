@@ -43,13 +43,13 @@ class MainActivity : BaseActivity(), View.OnClickListener, MainListener {
     }
 
     private var binder : MainBinder? = null
-    private val mainViewModel : MainViewModel by viewModels<MainViewModel>()
+    private val viewModel : MainViewModel by viewModels<MainViewModel>()
     private val androidViewModel : MainAndroidViewModel by viewModels<MainAndroidViewModel>()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         binder = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
         super.onCreate(savedInstanceState)
-        binder?.setViewModel(mainViewModel)
+        binder?.setViewModel(viewModel)
         binder?.setLifecycleOwner(this@MainActivity)
         if (savedInstanceState == null) {
             launchMain()
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), View.OnClickListener, MainListener {
     }
 
     private fun observeLoadState() {
-        mainViewModel.observeLoadState().observe(this, object : Observer<Boolean> {
+        viewModel.observeLoadState().observe(this, object : Observer<Boolean> {
             override fun onChanged(isLoading : Boolean?) {
                 when(isLoading == true) {
                     true -> standByDialog.show()
@@ -77,27 +77,9 @@ class MainActivity : BaseActivity(), View.OnClickListener, MainListener {
     override fun onClick(view : View?) {
         if (view == binder?.floatingActionButtonAdd) launchAdd()
         else if (view == binder?.floatingActionButtonDelete) {
-            mainViewModel.deleteAll()
+            viewModel.deleteAll()
             showToast(getString(R.string.delete_all))
         }
-    }
-
-    private fun replaceFragment(containerViewId : Int, fragment : Fragment) {
-        getSupportFragmentManager().beginTransaction()
-            .replace(containerViewId, fragment, fragment::class.java.getSimpleName())
-            .commitNow()
-    }
-
-    private fun addToBackStackFragment(containerViewId : Int, fragment : Fragment) {
-        if (getSupportFragmentManager().findFragmentByTag(fragment::class.java.getSimpleName()) == null)
-            getSupportFragmentManager().beginTransaction()
-                .add(containerViewId, fragment, fragment::class.java.getSimpleName())
-                .addToBackStack(fragment::class.java.getSimpleName())
-                .commit()
-    }
-
-    private fun showDialogFragment(fragment : DialogFragment) {
-        fragment.show(getSupportFragmentManager().beginTransaction(), fragment.javaClass.getName())
     }
 
     private fun launchMain() {

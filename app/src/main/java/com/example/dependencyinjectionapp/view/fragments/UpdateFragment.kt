@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dependencyinjectionapp.R
@@ -14,6 +15,7 @@ import com.example.dependencyinjectionapp.databinding.UpdateBinder
 import com.example.dependencyinjectionapp.model.CustomModel
 import com.example.dependencyinjectionapp.util.Coroutines
 import com.example.dependencyinjectionapp.view.models.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 public class UpdateFragment : BaseDialogFragment, View.OnClickListener {
 
@@ -24,7 +26,7 @@ public class UpdateFragment : BaseDialogFragment, View.OnClickListener {
     }
 
     private var binder : UpdateBinder? = null
-    private val viewModel : MainViewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
+    private val viewModel : MainViewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }//private val viewModel : MainViewModel by viewModels<MainViewModel>()
 
     constructor() {
 
@@ -45,15 +47,13 @@ public class UpdateFragment : BaseDialogFragment, View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         binder?.setViewModel(viewModel)
         binder?.setLifecycleOwner(this@UpdateFragment)
-        Coroutines.main(this@UpdateFragment, {
-            viewModel.observeUpdate().observe(getViewLifecycleOwner(), object : Observer<CustomModel> {
-                override fun onChanged(item : CustomModel) {
-                    binder?.editText?.setText(item.name)
-                    binder?.editText?.requestFocus()
-                    binder?.editText?.selectAll()
-                    showSoftKeyboard(binder?.editText)
-                }
-            })
+        viewModel.observeUpdate().observe(getViewLifecycleOwner(), object : Observer<CustomModel> {
+            override fun onChanged(item : CustomModel) {
+                binder?.editText?.setText(item.name)
+                binder?.editText?.requestFocus()
+                binder?.editText?.selectAll()
+                showSoftKeyboard(binder?.editText)
+            }
         })
         binder?.button?.setOnClickListener(this@UpdateFragment)
     }
