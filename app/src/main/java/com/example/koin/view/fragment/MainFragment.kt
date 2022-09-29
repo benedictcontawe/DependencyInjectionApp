@@ -57,7 +57,7 @@ class MainFragment : BaseFragment(), CustomListeners {
         //binding.recyclerView.removeItemDecoration(itemDecorationHelper)
         binding.recyclerView.adapter = adapter
 
-        viewModel.getItems().observe(viewLifecycleOwner, object : Observer<List<CustomModel>> {
+        viewModel.observeItems().observe(viewLifecycleOwner, object : Observer<List<CustomModel>> {
             override fun onChanged(list : List<CustomModel>) {
                 Log.d("MainFragment","ID ${list.map { it.id }}, Name ${list.map { it.name }}")
                 binding.recyclerView.removeAllViews()

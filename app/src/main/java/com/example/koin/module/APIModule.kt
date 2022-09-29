@@ -2,7 +2,6 @@ package com.example.koin.module
 
 import org.koin.core.module.Module
 import org.koin.dsl.module
-
 /**
  * For API (Retrofit)
  * */

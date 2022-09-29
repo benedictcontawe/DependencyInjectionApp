@@ -26,8 +26,6 @@ class AppDelegate : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
-
         // Start Koin
         startKoin{
             androidLogger()  // use AndroidLogger as Koin Logger - default Level.INFO
@@ -39,9 +37,7 @@ class AppDelegate : MultiDexApplication() {
                     APIModule.module,
                     DataModule.module
                 )
-            ) // module list
+            )//module list
         }
     }
-
-
 }

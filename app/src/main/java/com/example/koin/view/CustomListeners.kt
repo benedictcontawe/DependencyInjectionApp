@@ -2,10 +2,10 @@ package com.example.koin.view
 
 import com.example.koin.model.CustomModel
 
-interface CustomListeners {
+public interface CustomListeners {
 
-    fun onUpdate(item : CustomModel, position: Int)
+    public fun onUpdate(item : CustomModel, position: Int)
 
-    fun onDelete(item : CustomModel, position: Int)
+    public fun onDelete(item : CustomModel, position: Int)
 
 }
