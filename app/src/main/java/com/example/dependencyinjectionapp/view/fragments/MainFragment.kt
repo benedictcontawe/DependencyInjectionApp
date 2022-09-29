@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.dependencyinjectionapp.R
 import com.example.dependencyinjectionapp.databinding.RecyclerBinder
@@ -27,7 +27,7 @@ public class MainFragment : BaseFragment, CustomListener {
     }
 
     private var binder : RecyclerBinder? = null
-    private val viewModel : MainViewModel by viewModels<MainViewModel>()
+    private val viewModel : MainViewModel by activityViewModels<MainViewModel>()
     private val adapter : CustomAdapter by lazy { CustomAdapter(this@MainFragment) }
     private val listener : MainListener?
     //private lateinit var itemDecorationHelper: BottomOffsetDecorationHelper

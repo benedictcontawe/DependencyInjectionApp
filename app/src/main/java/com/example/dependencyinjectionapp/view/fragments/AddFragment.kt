@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.dependencyinjectionapp.R
 import com.example.dependencyinjectionapp.databinding.AddBinder
 import com.example.dependencyinjectionapp.model.CustomModel
@@ -24,7 +24,7 @@ public class AddFragment : BaseFragment, View.OnClickListener {
     }
 
     private var binder : AddBinder? = null
-    private val viewModel : MainViewModel by viewModels<MainViewModel>()
+    private val viewModel : MainViewModel by activityViewModels<MainViewModel>()
 
     constructor() {
 

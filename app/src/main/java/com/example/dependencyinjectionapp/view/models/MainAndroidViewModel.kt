@@ -27,5 +27,4 @@ class MainAndroidViewModel : AndroidViewModel {
     fun getRepositoryInstance() : String {
         return baseRepository.giveRepository()
     }
-
 }

@@ -17,7 +17,7 @@ import javax.inject.Inject
 public class MainViewModel : ViewModel {
 
     companion object {
-        private val TAG : String = MainViewModel::class.java.simpleName
+        private val TAG : String = MainViewModel::class.java.getSimpleName()
     }
 
     private val repository : BaseRepository
@@ -66,12 +66,12 @@ public class MainViewModel : ViewModel {
         return liveStandBy
     }
 
-    fun setUpdate(item : CustomModel?) { Coroutines.io(this@MainViewModel) {
+    fun setUpdate(item : CustomModel?) { Log.d("MainViewModel","setUpdate($item)")
         if (item != null) {
-            liveStandBy.postValue(true)
-            liveUpdate.postValue(item)
+            liveStandBy.setValue(true)
+            liveUpdate.setValue(item)
         }
-    } }
+    }
 
     fun observeUpdate() : LiveData<CustomModel> {
         return liveUpdate
