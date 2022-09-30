@@ -5,7 +5,7 @@ import org.koin.dsl.module
 /**
  * For API (Retrofit)
  * */
-object APIModule {
+object NetworkModule {
 
     val module : Module = module {
         /*
