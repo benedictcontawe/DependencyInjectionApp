@@ -1,7 +1,7 @@
 package com.example.koin
 
 import androidx.multidex.MultiDexApplication
-import com.example.koin.module.APIModule
+import com.example.koin.module.NetworkModule
 import com.example.koin.module.ApplicationModule
 import com.example.koin.module.DataModule
 import org.koin.android.ext.koin.androidContext
@@ -29,7 +29,7 @@ class AppDelegate : MultiDexApplication() {
             this.koin.loadModules(
                 listOf(
                     ApplicationModule.module,
-                    APIModule.module,
+                    NetworkModule.module,
                     DataModule.module
                 )
             )//module list
