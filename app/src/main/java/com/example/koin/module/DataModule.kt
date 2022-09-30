@@ -1,56 +1,44 @@
 package com.example.koin.module
 
-import org.koin.core.module.Module
-import org.koin.dsl.module
-/**
- * For Database
- * */
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
 object DataModule {
-
-    val module : Module = module {
-        /*
-        single<CustomDatabase> {
-            provideRoomDatabase(get<Application>(), "custom_database", get<RoomDatabase.Callback>())
-        }
-
-        factory {
-            provideRoomDatabaseCallback(get<BaseRepository>())
-        }
-
-        factory<CustomDAO> {
-            provideCustomDao(get<CustomDatabase>())
-        }
-        */
-    }
     /*
-    private fun provideRoomDatabase(context : Context, name : String, roomCallback : RoomDatabase.Callback) : CustomDatabase {
+    @Provides
+    @Singleton
+    public fun provideDataBase(application : Application, roomCallback : RoomDatabase.Callback) : CustomDatabase {
         return Room.databaseBuilder(
-            context.getApplicationContext(),
+            application.getApplicationContext(),
             CustomDatabase::class.java,
-            name
+            "custom_database"
         )
             .fallbackToDestructiveMigration()
             .addCallback(roomCallback)
             .build()
     }
 
-    private fun provideRoomDatabaseCallback(baseRepository : BaseRepository) : RoomDatabase.Callback {
+    @Provides
+    public fun provideRoomDatabaseCallback() : RoomDatabase.Callback {
         return object : RoomDatabase.Callback() {
-            override fun onCreate(db : SupportSQLiteDatabase) { //Initialize Database if no database attached to the App
+            override fun onCreate(db : SupportSQLiteDatabase) {
+                //Initialize Database if no database attached to the App
                 super.onCreate(db)
-                *//*Coroutines.io {
-                    for (index in 0 until 500) {
-                        baseRepository.insert(CustomEntity("name $index", R.drawable.ic_launcher_foreground))
-                    }
-                }*//*
             }
 
-            override fun onOpen(db : SupportSQLiteDatabase) { //Re-open Database if it has database attached to the App
+            override fun onOpen(db : SupportSQLiteDatabase) {
+                //Re-open Database if it has database attached to the App
                 super.onOpen(db)
             }
         }
     }
 
-    private fun provideCustomDao(database : CustomDatabase) : CustomDAO = database.customDao()
+    @Provides
+    public fun provideCustomDAO(customDatabase : CustomDatabase) : CustomDAO {
+        return customDatabase.customDao()
+    }
     */
 }

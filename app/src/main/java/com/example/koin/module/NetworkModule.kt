@@ -4,40 +4,27 @@ import com.example.koin.network.NasaAPI
 import com.example.koin.util.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import org.koin.core.module.Module
-import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-/**
- * For API (Retrofit)
- * */
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    val module : Module = module {
-        single {
-            provideRetrofit(Constants.API_DOMAIN, get<Gson>(), get<OkHttpClient>())
-        }
-
-        single {
-            provideOkHttpClient(Constants.TIMEOUT)
-        }
-
-        single {
-            provideGsonBuilder()
-        }
-
-        factory<NasaAPI> {
-            provideNasaAPI(get<Retrofit>())
-        }
-    }
-
-    private fun provideRetrofit(url : String, gson : Gson, okHttpClient : OkHttpClient) : Retrofit {
+    @Provides
+    @Singleton
+    public fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(okHttpClient)
+            .baseUrl(Constants.API_DOMAIN)
+            .addConverterFactory(GsonConverterFactory.create(provideGsonBuilder()))
+            .client(provideOkHttpClient())
             .build()
     }
 
@@ -47,11 +34,11 @@ object NetworkModule {
             .create()
     }
 
-    private fun provideOkHttpClient(timeout : Long) : OkHttpClient {
+    private fun provideOkHttpClient() : OkHttpClient {
         return  OkHttpClient.Builder()
-            .connectTimeout(timeout, TimeUnit.SECONDS)
-            .readTimeout(timeout, TimeUnit.SECONDS)
-            .writeTimeout(timeout, TimeUnit.SECONDS)
+            .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
             /*.addInterceptor(object  : Interceptor {
                 override fun intercept(chain: Interceptor.Chain) : Response {
                     val original : Request = chain.request()
@@ -70,7 +57,8 @@ object NetworkModule {
         return retrofit.create(serviceClass)
     }
 
-    private fun provideNasaAPI(retrofit : Retrofit) : NasaAPI {
+    @Provides
+    public fun provideNasaAPI(retrofit : Retrofit) : NasaAPI {
         return createService(retrofit, NasaAPI::class.java)
     }
 }

@@ -4,17 +4,19 @@ import android.util.Log
 import com.example.jetpackcomponentsapp.NasaRequestModel
 import com.example.jetpackcomponentsapp.NasaResponseModel
 import com.example.koin.network.NasaAPI
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import retrofit2.Response
 
-public class CustomRepository : BaseRepository, KoinComponent {
+public class CustomRepository : BaseRepository {
 
     companion object {
         private val TAG : String = CustomRepository::class.java.getSimpleName()
     }
 
-    private val nasaAPI : NasaAPI by inject()
+    private val nasaAPI : NasaAPI
+
+    constructor(nasaAPI : NasaAPI) {
+        this.nasaAPI = nasaAPI
+    }
 
     override fun giveRepository() : String {
         return this.toString()

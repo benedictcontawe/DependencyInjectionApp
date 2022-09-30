@@ -2,17 +2,17 @@ package com.example.koin.view.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import com.example.koin.repository.BaseRepository
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainAndroidViewModel : AndroidViewModel, KoinComponent {
+@HiltViewModel
+class MainAndroidViewModel : AndroidViewModel {
 
-    private val baseRepository : BaseRepository by inject()
-    private val liveHello : MutableLiveData<String> by lazy(LazyThreadSafetyMode.NONE, initializer = { MutableLiveData<String>() })
+    private val repository : BaseRepository
 
-    constructor(application: Application) : super(application) {
-
+    @Inject
+    constructor(repository : BaseRepository, application: Application) : super(application) {
+        this.repository = repository
     }
 }

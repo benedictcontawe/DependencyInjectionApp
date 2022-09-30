@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.dagger.hilt.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
@@ -63,14 +64,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.google.code.gson:gson:2.8.9'
     //endregion
-    //region Koin
-    implementation "io.insert-koin:koin-core:3.2.0"
-    implementation "io.insert-koin:koin-android:3.2.0"
-    //implementation "org.koin:koin-androidx-viewmodel:2.1.4"
-    //implementation 'org.koin:koin-android-architecture:0.9.1'
-    //implementation "org.koin:koin-androidx-scope:2.1.4"
-    //implementation "org.koin:koin-androidx-fragment:2.1.4"
-    //implementation "org.koin:koin-test:2.1.4"
+    //region Dagger Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
+    //implementation "androidx.hilt:hilt-lifecycle-viewmodel:2.44"
+    //kapt "androidx.hilt:hilt-compiler:2.44" //When using Kotlin.
+    //annotationProcessor  "androidx.hilt:hilt-compiler:1.0.0-alpha02" //When using Java.
     //endregion
     //region Squareup Library
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

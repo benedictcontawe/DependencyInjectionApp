@@ -3,6 +3,7 @@ package com.example.koin.view.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -13,10 +14,11 @@ import com.example.koin.util.Coroutines
 import com.example.koin.view.adapters.NasaAdapter
 import com.example.koin.view.models.MainAndroidViewModel
 import com.example.koin.view.models.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 public class MainActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
@@ -27,8 +29,8 @@ public class MainActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
     }
 
     private var binder : MainBinder? = null
-    private val viewModel : MainViewModel by viewModel<MainViewModel>()
-    private val androidViewModel : MainAndroidViewModel by viewModel<MainAndroidViewModel>()
+    private val viewModel : MainViewModel by viewModels<MainViewModel>()
+    private val androidViewModel : MainAndroidViewModel by viewModels<MainAndroidViewModel>()
     private val adapter : NasaAdapter by lazy { NasaAdapter() }
 
     override fun onCreate(savedInstanceState : Bundle?) {

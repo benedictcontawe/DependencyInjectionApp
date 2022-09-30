@@ -1,41 +1,26 @@
 package com.example.koin.module
 
-import android.app.Application
-import com.example.koin.view.models.MainAndroidViewModel
-import com.example.koin.view.models.MainViewModel
-import com.example.koin.presenter.CustomPresenter
+import com.example.koin.network.NasaAPI
 import com.example.koin.repository.BaseRepository
 import com.example.koin.repository.CustomRepository
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.module.Module
-import org.koin.dsl.module
-/**
- * For Application (View Model, Presenter, App)
- * */
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
+
+@Module
+@InstallIn(ViewModelComponent::class)
 object ApplicationModule {
 
-    val module : Module = module {
-
-        single<BaseRepository> {
-            provideCustomRepository()
-        }
-
-        viewModel {
-            provideMainViewModel(get<BaseRepository>())
-        }
-
-        viewModel {
-            provideMainAndroidViewModel(get<Application>(),get<BaseRepository>())
-        }
+    @Provides
+    @ViewModelScoped
+    public fun provideCustomRepository(nasaAPI : NasaAPI) : BaseRepository {
+        return CustomRepository(nasaAPI)
     }
-
-    private fun provideCustomRepository() : CustomRepository = CustomRepository()
-
-    private fun provideMainViewModel(baseRepository : BaseRepository) : MainViewModel = MainViewModel()
-
-    private fun provideMainAndroidViewModel(application: Application, baseRepository : BaseRepository) : MainAndroidViewModel = MainAndroidViewModel(application)
-
-    private fun provideCustomPresenter(baseRepository : BaseRepository) : CustomPresenter{
-        return CustomPresenter(baseRepository)
-    }
+    /*
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    annotation class ApplicationScope
+    */
 }

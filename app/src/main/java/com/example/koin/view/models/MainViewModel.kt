@@ -10,16 +10,17 @@ import com.example.koin.model.NasaHolderModel
 import com.example.koin.repository.BaseRepository
 import com.example.koin.util.Constants
 import com.example.koin.util.Coroutines
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-public class MainViewModel : ViewModel, KoinComponent {
+@HiltViewModel
+public class MainViewModel : ViewModel {
 
     companion object {
         private val TAG : String = MainViewModel::class.java.getSimpleName()
     }
 
-    private val repository : BaseRepository by inject()
+    private val repository : BaseRepository
     private val list : MutableList<NasaHolderModel> by lazy(LazyThreadSafetyMode.NONE, initializer = {
         mutableListOf<NasaHolderModel>()
     })
@@ -28,8 +29,9 @@ public class MainViewModel : ViewModel, KoinComponent {
         MutableLiveData<List<NasaHolderModel>>()
     })
 
-    constructor() {
-
+    @Inject
+    constructor(repository : BaseRepository) {
+        this.repository = repository
     }
 
     fun getInstance() : String {

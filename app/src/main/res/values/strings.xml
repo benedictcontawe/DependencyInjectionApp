@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KoinApp</string>
+    <string name="app_name">DaggerHiltApp</string>
     <string name="update">Update</string>
     <string name="delete_all">Delete All</string>
     <string name="Processing__please_wait_">Processing. Please wait…</string>
