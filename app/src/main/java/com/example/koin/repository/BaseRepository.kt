@@ -1,19 +1,11 @@
 package com.example.koin.repository
 
-import androidx.lifecycle.LiveData
-import com.example.koin.room.CustomEntity
+import com.example.jetpackcomponentsapp.NasaRequestModel
+import com.example.jetpackcomponentsapp.NasaResponseModel
 
 public interface BaseRepository {
 
     public fun giveRepository() : String
 
-    suspend fun insert(customEntity : CustomEntity)
-
-    suspend fun update(customEntity : CustomEntity)
-
-    suspend fun delete(customEntity : CustomEntity)
-
-    suspend fun deleteAll()
-
-    public fun getAll() : LiveData<List<CustomEntity>>
+    public suspend fun getAPOD(request : NasaRequestModel) : List<NasaResponseModel>
 }

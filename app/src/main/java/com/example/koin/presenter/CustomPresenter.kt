@@ -10,5 +10,5 @@ public class CustomPresenter {
         this.customRepository = baseRepository
     }
 
-    fun sayHello() = "${customRepository.getAll()} from $this"
+    //fun sayHello() = "${customRepository.getAll()} from $this"
 }

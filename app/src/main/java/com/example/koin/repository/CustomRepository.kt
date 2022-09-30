@@ -1,50 +1,36 @@
 package com.example.koin.repository
 
-import androidx.lifecycle.LiveData
-import com.example.koin.room.CustomDAO
-import com.example.koin.room.CustomEntity
+import android.util.Log
+import com.example.jetpackcomponentsapp.NasaRequestModel
+import com.example.jetpackcomponentsapp.NasaResponseModel
+import com.example.koin.network.NasaAPI
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import retrofit2.Response
 
 public class CustomRepository : BaseRepository, KoinComponent {
 
-    private val customDao : CustomDAO by inject()
-
-    constructor () {
-
+    companion object {
+        private val TAG : String = CustomRepository::class.java.getSimpleName()
     }
 
+    private val nasaAPI : NasaAPI by inject()
 
     override fun giveRepository() : String {
         return this.toString()
     }
-    //region CRUD Operation
-    override suspend fun insert(customEntity : CustomEntity) {
-        customDao.insert(
-            customEntity
-        )
-    }
 
-    override suspend fun update(customEntity : CustomEntity) {
-        println("${customEntity.id}")
-        customDao.update(
-            customEntity
-        )
+    public override suspend fun getAPOD(request : NasaRequestModel) : List<NasaResponseModel> {
+        val response : Response<List<NasaResponseModel>> = nasaAPI.getAstronomyPictureOfTheDay(request.key!!, request.count!!).execute()
+        Log.d(TAG,"isSuccessful() ${response.isSuccessful()}")
+        Log.d(TAG,"errorBody() ${response.errorBody()}")
+        Log.d(TAG,"body() ${response.body()}")
+        Log.d(TAG,"code() ${response.code()}")
+        Log.d(TAG,"headers() ${response.headers()}")
+        Log.d(TAG,"message() ${response.message()}")
+        Log.d(TAG,"raw() ${response.raw()}")
+        return if (response.isSuccessful() && response.body() != null) response.body()!!
+        else if (!response.isSuccessful()) listOf<NasaResponseModel>()
+        else emptyList<NasaResponseModel>()
     }
-
-    override suspend fun delete(customEntity : CustomEntity) {
-        println("${customEntity.id}")
-        customDao.delete(
-            customEntity.id
-        )
-    }
-
-    override suspend fun deleteAll() {
-        customDao.deleteAll()
-    }
-
-    override fun getAll() : LiveData<List<CustomEntity>> {
-        return customDao.getAll()
-    }
-    //endregion
 }

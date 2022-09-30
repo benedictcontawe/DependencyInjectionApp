@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/drawable-v24/ic_image.xml" value="0.137" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/drawable/ic_android_black.xml" value="0.111" />
+        <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/drawable/ic_image.xml" value="0.137" />
+        <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
+        <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/drawable/ic_loading.xml" value="0.1" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/activity_main.xml" value="0.2111111111111111" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/add_fragment.xml" value="0.2421875" />
+        <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/cell.xml" value="0.2421875" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/fragment_main.xml" value="0.2111111111111111" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/item_sample.xml" value="0.2111111111111111" />
         <entry key="..\:/Benedict/Android Studio Projects/DependencyInjectionApp/app/src/main/res/layout/progress_dialog.xml" value="0.24114583333333334" />

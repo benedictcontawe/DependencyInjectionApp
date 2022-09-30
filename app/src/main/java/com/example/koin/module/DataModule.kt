@@ -1,17 +1,5 @@
 package com.example.koin.module
 
-import android.app.Application
-import android.content.Context
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.koin.AppDelegate
-import com.example.koin.R
-import com.example.koin.repository.BaseRepository
-import com.example.koin.room.CustomDAO
-import com.example.koin.room.CustomDatabase
-import com.example.koin.room.CustomEntity
-import com.example.koin.util.Coroutines
 import org.koin.core.module.Module
 import org.koin.dsl.module
 /**
@@ -20,7 +8,7 @@ import org.koin.dsl.module
 object DataModule {
 
     val module : Module = module {
-
+        /*
         single<CustomDatabase> {
             provideRoomDatabase(get<Application>(), "custom_database", get<RoomDatabase.Callback>())
         }
@@ -32,8 +20,9 @@ object DataModule {
         factory<CustomDAO> {
             provideCustomDao(get<CustomDatabase>())
         }
+        */
     }
-
+    /*
     private fun provideRoomDatabase(context : Context, name : String, roomCallback : RoomDatabase.Callback) : CustomDatabase {
         return Room.databaseBuilder(
             context.getApplicationContext(),
@@ -49,11 +38,11 @@ object DataModule {
         return object : RoomDatabase.Callback() {
             override fun onCreate(db : SupportSQLiteDatabase) { //Initialize Database if no database attached to the App
                 super.onCreate(db)
-                /*Coroutines.io {
+                *//*Coroutines.io {
                     for (index in 0 until 500) {
                         baseRepository.insert(CustomEntity("name $index", R.drawable.ic_launcher_foreground))
                     }
-                }*/
+                }*//*
             }
 
             override fun onOpen(db : SupportSQLiteDatabase) { //Re-open Database if it has database attached to the App
@@ -63,4 +52,5 @@ object DataModule {
     }
 
     private fun provideCustomDao(database : CustomDatabase) : CustomDAO = database.customDao()
+    */
 }

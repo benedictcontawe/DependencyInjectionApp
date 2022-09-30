@@ -3,8 +3,7 @@ package com.example.koin.view.holders
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.koin.model.CustomModel
-import com.example.koin.view.listeners.CustomListener
+import com.example.koin.model.NasaHolderModel
 
 abstract class BaseViewHolder : RecyclerView.ViewHolder {
 
@@ -12,19 +11,14 @@ abstract class BaseViewHolder : RecyclerView.ViewHolder {
         private val TAG : String = BaseViewHolder.javaClass::class.java.getSimpleName()
     }
 
-    private val customListener : CustomListener
 
-    constructor(customListener : CustomListener, view : View) : super(view) {
-        this.customListener = customListener
+    constructor(view : View) : super(view) {
+
     }
 
     protected fun getContext() : Context {
         return itemView.getContext()
     }
 
-    protected fun getListener() : CustomListener {
-        return customListener
-    }
-
-    abstract fun bindDataToViewHolder(model : CustomModel, position : Int)
+    abstract fun bindDataToViewHolder(model : NasaHolderModel, position : Int)
 }
