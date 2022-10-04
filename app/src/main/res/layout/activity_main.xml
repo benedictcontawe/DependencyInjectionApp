@@ -7,11 +7,11 @@
     <data class="MainBinder">
         <variable
             name="viewModel"
-            type="com.example.dagger_hilt.MainViewModel" />
+            type="com.example.koin.view.models.MainViewModel" />
 
         <variable
             name="androidViewModel"
-            type="com.example.dagger_hilt.MainAndroidViewModel" />
+            type="com.example.koin.view.models.MainAndroidViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
