@@ -1,7 +1,5 @@
 package com.example.koin.repository
 
-import com.example.jetpackcomponentsapp.NasaRequestModel
-import com.example.jetpackcomponentsapp.NasaResponseModel
 import kotlinx.coroutines.flow.Flow
 
 public interface BaseRepository {

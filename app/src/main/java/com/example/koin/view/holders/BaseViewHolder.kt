@@ -3,7 +3,6 @@ package com.example.koin.view.holders
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.koin.model.NasaHolderModel
 
 abstract class BaseViewHolder : RecyclerView.ViewHolder {
 
@@ -19,6 +18,4 @@ abstract class BaseViewHolder : RecyclerView.ViewHolder {
     protected fun getContext() : Context {
         return itemView.getContext()
     }
-
-    abstract fun bindDataToViewHolder(model : NasaHolderModel, position : Int)
 }

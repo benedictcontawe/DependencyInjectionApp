@@ -1,10 +1,8 @@
 package com.example.koin.view.models
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.koin.model.NasaHolderModel
 import com.example.koin.repository.BaseRepository
 import com.example.koin.util.Coroutines
 import org.koin.core.component.KoinComponent
@@ -17,13 +15,6 @@ public class MainViewModel : ViewModel, KoinComponent {
     }
 
     private val repository : BaseRepository by inject()
-    private val list : MutableList<NasaHolderModel> by lazy(LazyThreadSafetyMode.NONE, initializer = {
-        mutableListOf<NasaHolderModel>()
-    })
-
-    private val liveList : MutableLiveData<List<NasaHolderModel>> by lazy(LazyThreadSafetyMode.NONE, initializer = {
-        MutableLiveData<List<NasaHolderModel>>()
-    })
 
     constructor() {
 
