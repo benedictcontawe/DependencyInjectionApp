@@ -1,14 +1,11 @@
 package com.example.koin.view.models
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.jetpackcomponentsapp.NasaRequestModel
-import com.example.jetpackcomponentsapp.NasaResponseModel
+import androidx.lifecycle.asLiveData
 import com.example.koin.model.NasaHolderModel
 import com.example.koin.repository.BaseRepository
-import com.example.koin.util.Constants
 import com.example.koin.util.Coroutines
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -40,19 +37,54 @@ public class MainViewModel : ViewModel, KoinComponent {
         return repository.giveRepository()
     }
 
-    public fun requestAPOD() { Coroutines.default(this@MainViewModel, {
-        val request : NasaRequestModel = NasaRequestModel(Constants.API_KEY, list.size + 5)
-        val responseList : List<NasaResponseModel> = repository.getAPOD(request)
-        list.clear()
-        Log.d(TAG, "getAPOD() size ${responseList.size}")
-        responseList.forEach { response -> Log.d(TAG, "Response $response")
-            list.add(NasaHolderModel(list.size + 1, response))
+    fun update(booleanKey : Boolean) {
+        Coroutines.io(this@MainViewModel) {
+            repository.update(booleanKey)
         }
-        liveList.postValue(list.reversed())
-    } ) }
+    }
 
-    public fun observeAPOD() : LiveData<List<NasaHolderModel>> {
-        return liveList
+    fun update(stringKey : String) {
+        Coroutines.io(this@MainViewModel) {
+            repository.update(stringKey)
+        }
+    }
+
+    fun update(integerKey : Int) {
+        Coroutines.io(this@MainViewModel) {
+            repository.update(integerKey)
+        }
+    }
+
+    fun update(doubleKey : Double) {
+        Coroutines.io(this@MainViewModel) {
+            repository.update(doubleKey)
+        }
+    }
+
+    fun update(longKey : Long) {
+        Coroutines.io(this@MainViewModel) {
+            repository.update(longKey)
+        }
+    }
+
+    fun observeBoolean() : LiveData<Boolean> {
+        return repository.getBoolean().asLiveData(/*viewModelScope.coroutineContext*/)
+    }
+
+    fun observeString() : LiveData<String> {
+        return repository.getString().asLiveData(/*viewModelScope.coroutineContext*/)
+    }
+
+    fun observeInt() : LiveData<Int> {
+        return repository.getInteger().asLiveData(/*viewModelScope.coroutineContext*/)
+    }
+
+    fun observeDouble() : LiveData<Double> {
+        return repository.getDouble().asLiveData(/*viewModelScope.coroutineContext*/)
+    }
+
+    fun observeLong() : LiveData<Long> {
+        return repository.getLong().asLiveData(/*viewModelScope.coroutineContext*/)
     }
 
     override fun onCleared() {

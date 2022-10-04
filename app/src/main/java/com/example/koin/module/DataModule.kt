@@ -1,5 +1,9 @@
 package com.example.koin.module
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import org.koin.core.module.Module
 import org.koin.dsl.module
 /**
@@ -22,6 +26,13 @@ object DataModule {
         }
         */
     }
+    /*
+    private fun provideDataStore(baseContext : Context) : DataStore<Preferences> {//data_store
+        //return application.getBaseContext().createDataStore(name = "data_store")
+        val baseContext.dataStore : DataStore<Preferences> by preferencesDataStore(name = "data_store")
+        return dataStore
+    }
+    */
     /*
     private fun provideRoomDatabase(context : Context, name : String, roomCallback : RoomDatabase.Callback) : CustomDatabase {
         return Room.databaseBuilder(

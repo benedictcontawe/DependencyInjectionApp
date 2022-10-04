@@ -1,21 +1,14 @@
 package com.example.koin.module
 
-import com.example.koin.network.NasaAPI
-import com.example.koin.util.Constants
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import okhttp3.OkHttpClient
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 /**
  * For API (Retrofit)
  * */
 object NetworkModule {
 
     val module : Module = module {
+        /*
         single {
             provideRetrofit(Constants.API_DOMAIN, get<Gson>(), get<OkHttpClient>())
         }
@@ -31,8 +24,9 @@ object NetworkModule {
         factory<NasaAPI> {
             provideNasaAPI(get<Retrofit>())
         }
+        */
     }
-
+    /*
     private fun provideRetrofit(url : String, gson : Gson, okHttpClient : OkHttpClient) : Retrofit {
         return Retrofit.Builder()
             .baseUrl(url)
@@ -52,7 +46,7 @@ object NetworkModule {
             .connectTimeout(timeout, TimeUnit.SECONDS)
             .readTimeout(timeout, TimeUnit.SECONDS)
             .writeTimeout(timeout, TimeUnit.SECONDS)
-            /*.addInterceptor(object  : Interceptor {
+            addInterceptor(object  : Interceptor {
                 override fun intercept(chain: Interceptor.Chain) : Response {
                     val original : Request = chain.request()
                     val request : Request = original.newBuilder()
@@ -62,7 +56,7 @@ object NetworkModule {
                         .build()
                     return chain.proceed(request)
                 }
-            })*/
+            })
             .build()
     }
 
@@ -73,4 +67,5 @@ object NetworkModule {
     private fun provideNasaAPI(retrofit : Retrofit) : NasaAPI {
         return createService(retrofit, NasaAPI::class.java)
     }
+    */
 }
